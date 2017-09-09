@@ -10,14 +10,6 @@ tidystringdist basics
 ``` r
 library(tidystringdist)
 library(dplyr)
-#> 
-#> Attaching package: 'dplyr'
-#> The following objects are masked from 'package:stats':
-#> 
-#>     filter, lag
-#> The following objects are masked from 'package:base':
-#> 
-#>     intersect, setdiff, setequal, union
 data(starwars)
 tidy_stringdist(starwars$name,method= "osa")
 #> # A tibble: 3,741 x 3
@@ -60,7 +52,7 @@ tidy_stringdist(starwars$name,method= "jaccard") %>%
 tidycomb
 --------
 
-The tidycomb function creates a tibble with all possible combination from a list :
+The tidycomb function creates a tibble with all possible combinations from a list :
 
 ``` r
 tidy_comb(vec = LETTERS[1:5])
