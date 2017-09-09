@@ -1,0 +1,44 @@
+---
+output:
+  md_document:
+    variant: markdown_github
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
+
+# tidystringdist
+
+Compute string distance the tidy way. Built on top of the {stringdist} package.
+
+## tidystringdist basics
+
+```{r example}
+library(dplyr)
+data(starwars)
+tidy_stringdist(starwars$name,method= "osa")
+```
+
+The goal is to provide a convenient interface to work with other tools from the tidyverse. 
+
+```{r}
+tidy_stringdist(starwars$name,method= "jaccard") %>%
+  filter(string_dist > 0.80) %>%
+  arrange(desc(string_dist))
+```
+
+## tidycomb 
+
+The tidycomb function creates a tibble with all possible combination from a list : 
+
+```{r}
+tidy_comb(vec = LETTERS[1:5])
+```
+
