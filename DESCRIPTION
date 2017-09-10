@@ -10,4 +10,6 @@ LazyData: true
 RoxygenNote: 6.0.1.9000
 Imports: magrittr,
     purrr,
-    stringdist
+    stringdist,
+    rlang,
+    tidyr

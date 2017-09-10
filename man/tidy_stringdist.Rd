@@ -4,11 +4,15 @@
 \alias{tidy_stringdist}
 \title{Tidy stringdist calculation}
 \usage{
-tidy_stringdist(list, method = c("osa", "lv", "dl", "hamming", "lcs", "qgram",
-  "cosine", "jaccard", "jw", "soundex"))
+tidy_stringdist(df, v1 = V1, v2 = V2, method = c("osa", "lv", "dl",
+  "hamming", "lcs", "qgram", "cosine", "jaccard", "jw", "soundex"))
 }
 \arguments{
-\item{list}{a list of strings to compare}
+\item{df}{a dataframe containing the strings to compare}
+
+\item{v1}{the name of the first columns}
+
+\item{v2}{the name of the second columns}
 
 \item{method}{one of the methods implemented in the stringdist package — "osa", "lv", "dl", "hamming", "lcs", "qgram", "cosine", "jaccard", "jw", "soundex". See \code{\link[stringdist]{stringdist-metrics}}}
 }
@@ -19,6 +23,6 @@ a tibble with string distance
 Tidy stringdist calculation
 }
 \examples{
-proust <- c("Albertine", "Françoise", "Gilberte", "Odette", "Charles")
-tidy_stringdist(proust,method= "osa")
+proust <- tidy_comb_all(c("Albertine", "Françoise", "Gilberte", "Odette", "Charles"))
+tidy_stringdist(proust, method= "jw")
 }

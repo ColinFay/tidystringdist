@@ -2,19 +2,30 @@
 % Please edit documentation in R/tidycomb.R
 \name{tidy_comb}
 \alias{tidy_comb}
+\alias{tidy_comb.data.frame}
+\alias{tidy_comb.default}
 \title{tidy_comb}
 \usage{
-tidy_comb(vec)
+tidy_comb(data, base, ...)
+
+\method{tidy_comb}{data.frame}(data, base, ...)
+
+\method{tidy_comb}{default}(data, base, ...)
 }
 \arguments{
-\item{vec}{a list of elements to combine}
+\item{data}{data object containing the list of words, either a list or a data.frame}
+
+\item{base}{the base word to compare with all the words}
+
+\item{...}{if data is a data.frame, the col where the words to combine are}
 }
 \value{
-a tibble with all possible combination of a list
+a tibble with all possible combination of elements from a list
 }
 \description{
-tidy_comb
+Get all combinations from a dataframe column
 }
 \examples{
-tidy_comb(vec = LETTERS[1:5])
+tidy_comb(iris, "this", Species)
+tidy_comb(state.name, "Paris")
 }
