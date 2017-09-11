@@ -17,12 +17,13 @@ tidystringdist basic workflow
 tidycomb
 --------
 
-First, you need to create a tibble with the combinations of words you want to compare. You can do this with the `tidy_comb` and `tidy_comb_all` functions. The first takes a base word and combine it with each elements of a list or a column of a data.frame, the 2nd combines all the possible couples from a list or a column.
+First, you need to create a tibble with the combinations of words you want to compare. You can do this with the `tidy_comb` and `tidy_comb_all` functions. The first takes a base word and combines it with each elements of a list or a column of a data.frame, the 2nd combines all the possible couples from a list or a column.
 
-If you already have a data.frame with two columns with strings to compare, you can skip this part.
+If you already have a data.frame with two columns containing the strings to compare, you can skip this part.
 
 ``` r
 library(tidystringdist)
+
 tidy_comb_all(LETTERS[1:3])
 #> # A tibble: 3 x 2
 #>       V1     V2
@@ -30,6 +31,16 @@ tidy_comb_all(LETTERS[1:3])
 #> 1      A      B
 #> 2      A      C
 #> 3      B      C
+```
+
+``` r
+tidy_comb_all(iris, Species)
+#> # A tibble: 3 x 2
+#>           V1         V2
+#> *     <fctr>     <fctr>
+#> 1     setosa versicolor
+#> 2     setosa  virginica
+#> 3 versicolor  virginica
 ```
 
 ``` r
@@ -95,20 +106,22 @@ tidy_stringdist(tidy_comb_sw, method= "osa") %>%
 starwars %>%
   filter(species == "Droid") %>%
   tidy_comb_all(name) %>%
-  tidy_stringdist()
+  tidy_stringdist() %>% 
+  filter(string_dist > 0.80) %>%
+  arrange(desc(string_dist))
 #> # A tibble: 10 x 3
 #>        V1     V2 string_dist
-#>  * <fctr> <fctr>       <dbl>
+#>    <fctr> <fctr>       <dbl>
 #>  1  C-3PO  R2-D2           5
 #>  2  C-3PO  R5-D4           5
 #>  3  C-3PO  IG-88           5
 #>  4  C-3PO    BB8           5
-#>  5  R2-D2  R5-D4           2
-#>  6  R2-D2  IG-88           4
-#>  7  R2-D2    BB8           5
+#>  5  R2-D2    BB8           5
+#>  6  R5-D4    BB8           5
+#>  7  R2-D2  IG-88           4
 #>  8  R5-D4  IG-88           4
-#>  9  R5-D4    BB8           5
-#> 10  IG-88    BB8           4
+#>  9  IG-88    BB8           4
+#> 10  R2-D2  R5-D4           2
 ```
 
 ### Contact

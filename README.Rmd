@@ -28,13 +28,18 @@ devtools::install_github("ColinFay/tidystringdist")
 
 ## tidycomb 
 
-First, you need to create a tibble with the combinations of words you want to compare. You can do this with the `tidy_comb` and `tidy_comb_all` functions. The first takes a base word and combine it with each elements of a list or a column of a data.frame, the 2nd combines all the possible couples from a list or a column.
+First, you need to create a tibble with the combinations of words you want to compare. You can do this with the `tidy_comb` and `tidy_comb_all` functions. The first takes a base word and combines it with each elements of a list or a column of a data.frame, the 2nd combines all the possible couples from a list or a column.
 
-If you already have a data.frame with two columns with strings to compare, you can skip this part. 
+If you already have a data.frame with two columns containing the strings to compare, you can skip this part. 
 
 ```{r}
 library(tidystringdist)
+
 tidy_comb_all(LETTERS[1:3])
+```
+
+```{r}
+tidy_comb_all(iris, Species)
 ```
 
 
@@ -68,7 +73,9 @@ tidy_stringdist(tidy_comb_sw, method= "osa") %>%
 starwars %>%
   filter(species == "Droid") %>%
   tidy_comb_all(name) %>%
-  tidy_stringdist()
+  tidy_stringdist() %>% 
+  filter(string_dist > 0.80) %>%
+  arrange(desc(string_dist))
 ```
 
 ### Contact
