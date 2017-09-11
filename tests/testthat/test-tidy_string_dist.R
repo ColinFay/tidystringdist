@@ -1,0 +1,15 @@
+context("tidy_string_dist")
+
+library(dplyr)
+data(starwars)
+tidy_comb_sw <- tidy_comb_all(starwars, name)
+
+test_that("tidy stringdist works", {
+  df <- tidy_stringdist(tidy_comb_sw, method = "jw")
+  expect_equal(nrow(tidy_comb_sw), nrow(df))
+  expect_equal(ncol(df), 3)
+  expect_true(inherits(df, "tbl_df"))
+  expect_true(inherits(df, "tbl"))
+  expect_true(inherits(df, "data.frame"))
+  expect_false(any(df$string_dist > 1))
+})

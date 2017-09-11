@@ -13,3 +13,4 @@ Imports: magrittr,
     stringdist,
     rlang,
     tidyr
+Suggests: testthat
