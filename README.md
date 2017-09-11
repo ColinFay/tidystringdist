@@ -11,8 +11,8 @@ Install tidystringdist
 devtools::install_github("ColinFay/tidystringdist")
 ```
 
-tidystringdist basics workflow
-------------------------------
+tidystringdist basic workflow
+-----------------------------
 
 tidycomb
 --------

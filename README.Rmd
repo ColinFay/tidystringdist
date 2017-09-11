@@ -24,7 +24,7 @@ Compute string distance the tidy way. Built on top of the {stringdist} package.
 devtools::install_github("ColinFay/tidystringdist")
 ```
 
-## tidystringdist basics workflow
+## tidystringdist basic workflow
 
 ## tidycomb 
 
