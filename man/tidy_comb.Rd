@@ -23,7 +23,7 @@ tidy_comb(data, base, ...)
 a tibble with all possible combination of elements from a list
 }
 \description{
-Get all combinations from a dataframe column
+Get all combinations from a dataframe column or from a list
 }
 \examples{
 tidy_comb(iris, "this", Species)
