@@ -84,9 +84,9 @@ The goal is to provide a convenient interface to work with other tools from the 
 
 ``` r
 tidy_stringdist(tidy_comb_sw, method= "osa") %>%
-  filter(string_dist > 0.80) %>%
+  filter(string_dist > 20) %>%
   arrange(desc(string_dist))
-#> # A tibble: 3,741 x 3
+#> # A tibble: 11 x 3
 #>                       V1                    V2 string_dist
 #>                   <fctr>                <fctr>       <dbl>
 #>  1                 C-3PO Jabba Desilijic Tiure          21
@@ -99,7 +99,7 @@ tidy_stringdist(tidy_comb_sw, method= "osa") %>%
 #>  8 Jabba Desilijic Tiure                   BB8          21
 #>  9                 IG-88 Wicket Systri Warrick          21
 #> 10 Wicket Systri Warrick                R4-P17          21
-#> # ... with 3,731 more rows
+#> 11 Wicket Systri Warrick                   BB8          21
 ```
 
 ``` r
@@ -107,21 +107,20 @@ starwars %>%
   filter(species == "Droid") %>%
   tidy_comb_all(name) %>%
   tidy_stringdist() %>% 
-  filter(string_dist > 0.80) %>%
+  filter(string_dist > 2) %>%
   arrange(desc(string_dist))
-#> # A tibble: 10 x 3
-#>        V1     V2 string_dist
-#>    <fctr> <fctr>       <dbl>
-#>  1  C-3PO  R2-D2           5
-#>  2  C-3PO  R5-D4           5
-#>  3  C-3PO  IG-88           5
-#>  4  C-3PO    BB8           5
-#>  5  R2-D2    BB8           5
-#>  6  R5-D4    BB8           5
-#>  7  R2-D2  IG-88           4
-#>  8  R5-D4  IG-88           4
-#>  9  IG-88    BB8           4
-#> 10  R2-D2  R5-D4           2
+#> # A tibble: 9 x 3
+#>       V1     V2 string_dist
+#>   <fctr> <fctr>       <dbl>
+#> 1  C-3PO  R2-D2           5
+#> 2  C-3PO  R5-D4           5
+#> 3  C-3PO  IG-88           5
+#> 4  C-3PO    BB8           5
+#> 5  R2-D2    BB8           5
+#> 6  R5-D4    BB8           5
+#> 7  R2-D2  IG-88           4
+#> 8  R5-D4  IG-88           4
+#> 9  IG-88    BB8           4
 ```
 
 ### Contact

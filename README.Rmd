@@ -65,7 +65,7 @@ The goal is to provide a convenient interface to work with other tools from the 
 
 ```{r}
 tidy_stringdist(tidy_comb_sw, method= "osa") %>%
-  filter(string_dist > 0.80) %>%
+  filter(string_dist > 20) %>%
   arrange(desc(string_dist))
 ```
 
@@ -74,7 +74,7 @@ starwars %>%
   filter(species == "Droid") %>%
   tidy_comb_all(name) %>%
   tidy_stringdist() %>% 
-  filter(string_dist > 0.80) %>%
+  filter(string_dist > 2) %>%
   arrange(desc(string_dist))
 ```
 
