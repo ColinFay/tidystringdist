@@ -12,6 +12,7 @@ devtools::use_package("tidyr")
 devtools::use_testthat()
 devtools::use_test("tidy_comb")
 devtools::use_test("tidy_string_dist")
+devtools::use_vignette("Getting started with tidystringdist")
 
 # Roxygen
 
