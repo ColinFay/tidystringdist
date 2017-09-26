@@ -20,10 +20,9 @@
 
 tidy_stringdist <- function(df, v1 = V1, v2 = V2, method = c("osa", "lv", "dl", "hamming", "lcs", "qgram",
                                              "cosine", "jaccard", "jw", "soundex")) {
-  v1 <- rlang::quo_name(rlang::enquo(v1))
-  v2 <- rlang::quo_name(rlang::enquo(v2))
-  df$string_dist <- purrr::map2_dbl(.x = df[[v1]], .y = df[[v2]], .f = stringdist::stringdist, method)
-  #df <- tidyr::unnest(df)
+  df$string_dist <- stringdist::stringdist(a = df[[rlang::quo_name(rlang::enquo(v1))]],
+                                           b = df[[rlang::quo_name(rlang::enquo(v2))]],
+                                           method)
   structure(df, class = c("tbl_df", "tbl", "data.frame"))
 }
 
