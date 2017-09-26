@@ -1,4 +1,4 @@
-#' tidy_comb
+#' Tidy combine
 #'
 #' Get all combinations from a dataframe column or from a list
 #'
@@ -42,7 +42,7 @@ tidy_comb.default <- function(data, base,...) {
 }
 
 
-#' tidy_comb_all
+#' Tidy combine all
 #'
 #' Get all combinations from a dataframe column
 #'

@@ -4,7 +4,7 @@
 \alias{tidy_comb_all}
 \alias{tidy_comb_all.data.frame}
 \alias{tidy_comb_all.default}
-\title{tidy_comb_all}
+\title{Tidy combine all}
 \usage{
 tidy_comb_all(data, ...)
 
