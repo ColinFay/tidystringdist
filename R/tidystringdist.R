@@ -6,9 +6,7 @@
 #' @param method one of the methods implemented in the stringdist package — "osa", "lv", "dl", "hamming", "lcs", "qgram", "cosine", "jaccard", "jw", "soundex". See \code{\link[stringdist]{stringdist-metrics}}
 #'
 #' @importFrom stringdist stringdist
-#' @importFrom purrr map2
 #' @importFrom rlang quo_name enquo
-#' @importFrom tidyr unnest
 #'
 #' @return a tibble with string distance
 #' @export
@@ -20,6 +18,7 @@
 
 tidy_stringdist <- function(df, v1 = V1, v2 = V2, method = c("osa", "lv", "dl", "hamming", "lcs", "qgram",
                                              "cosine", "jaccard", "jw", "soundex")) {
+  method <- match.arg(method)
   df$string_dist <- stringdist::stringdist(a = df[[rlang::quo_name(rlang::enquo(v1))]],
                                            b = df[[rlang::quo_name(rlang::enquo(v2))]],
                                            method)
