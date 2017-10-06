@@ -7,21 +7,26 @@
 #'
 #' @importFrom stringdist stringdist
 #' @importFrom rlang quo_name enquo
+#' @importFrom dplyr mutate
 #'
 #' @return a tibble with string distance
 #' @export
 #'
 #' @examples
 #' proust <- tidy_comb_all(c("Albertine", "Françoise", "Gilberte", "Odette", "Charles"))
-#' tidy_stringdist(proust, method= "jw")
+#' tidy_stringdist(proust, method= "osa")
 
 
 tidy_stringdist <- function(df, v1 = V1, v2 = V2, method = c("osa", "lv", "dl", "hamming", "lcs", "qgram",
                                              "cosine", "jaccard", "jw", "soundex")) {
   method <- match.arg(method)
-  df$string_dist <- stringdist::stringdist(a = df[[rlang::quo_name(rlang::enquo(v1))]],
-                                           b = df[[rlang::quo_name(rlang::enquo(v2))]],
-                                           method)
-  structure(df, class = c("tbl_df", "tbl", "data.frame"))
+  col_name <- quo_name(enquo(method))
+  str_dist <- stringdist::stringdist(df[[rlang::quo_name(rlang::enquo(v1))]],
+                                     df[[rlang::quo_name(rlang::enquo(v2))]],
+                                     method)
+  structure(dplyr::mutate(df, !! col_name := str_dist), class = c("tbl_df", "tbl", "data.frame"))
 }
+
+
+
 

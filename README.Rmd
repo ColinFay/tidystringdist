@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 
 # tidystringdist
 
-Compute string distance the tidy way. Built on top of the {stringdist} package.
+Compute string distance the tidy way. Built on top of the 'stringdist' package.
 
 ## Install tidystringdist
 
@@ -65,8 +65,8 @@ The goal is to provide a convenient interface to work with other tools from the 
 
 ```{r}
 tidy_stringdist(tidy_comb_sw, method= "osa") %>%
-  filter(string_dist > 20) %>%
-  arrange(desc(string_dist))
+  filter(osa > 20) %>%
+  arrange(desc(osa))
 ```
 
 ```{r}
@@ -74,8 +74,8 @@ starwars %>%
   filter(species == "Droid") %>%
   tidy_comb_all(name) %>%
   tidy_stringdist() %>% 
-  filter(string_dist > 2) %>%
-  arrange(desc(string_dist))
+  filter(osa > 2) %>%
+  arrange(desc(osa))
 ```
 
 ### Contact

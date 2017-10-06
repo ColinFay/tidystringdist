@@ -1,1 +1,1 @@
-globalVariables(c("V1", "V2"))
+globalVariables(c("V1", "V2", ":="))
