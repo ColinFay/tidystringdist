@@ -1,6 +1,6 @@
-#' tidy_comb
+#' Tidy combine
 #'
-#' Get all combinations from a dataframe column
+#' Get all combinations from a dataframe column or from a list
 #'
 #' @param data data object containing the list of words, either a list or a data.frame
 #' @param base the base word to compare with all the words
@@ -42,7 +42,7 @@ tidy_comb.default <- function(data, base,...) {
 }
 
 
-#' tidy_comb_all
+#' Tidy combine all
 #'
 #' Get all combinations from a dataframe column
 #'
@@ -81,3 +81,4 @@ tidy_comb_all.default <- function(data, ...) {
   a <- as.data.frame(t(combn(data, 2)))
   structure(a, class = c("tbl_df", "tbl", "data.frame"))
 }
+

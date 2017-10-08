@@ -1,16 +1,18 @@
 ---
-output:
-  md_document:
-    variant: markdown_github
+title: "Getting started"
+author: "Colin Fay"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Getting started}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
-```{r, echo = FALSE}
+```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>",
-  fig.path = "README-"
+  comment = "#>"
 )
 ```
 
@@ -80,4 +82,4 @@ starwars %>%
 
 ### Contact
 
-Questions and feedbacks [welcome](mailto:contact@colinfay.me) !
+Questions and feedbacks [welcome](mailto:contact@colinfay.me)!

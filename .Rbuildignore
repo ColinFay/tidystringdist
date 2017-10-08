@@ -1,3 +1,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^docs$
+^\.travis\.yml$
+CONDUCT.md
+README.Rmd
+data-raw

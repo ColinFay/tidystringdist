@@ -4,7 +4,7 @@
 \alias{tidy_comb}
 \alias{tidy_comb.data.frame}
 \alias{tidy_comb.default}
-\title{tidy_comb}
+\title{Tidy combine}
 \usage{
 tidy_comb(data, base, ...)
 
@@ -23,7 +23,7 @@ tidy_comb(data, base, ...)
 a tibble with all possible combination of elements from a list
 }
 \description{
-Get all combinations from a dataframe column
+Get all combinations from a dataframe column or from a list
 }
 \examples{
 tidy_comb(iris, "this", Species)

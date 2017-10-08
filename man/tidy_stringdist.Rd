@@ -24,5 +24,5 @@ Tidy stringdist calculation
 }
 \examples{
 proust <- tidy_comb_all(c("Albertine", "Françoise", "Gilberte", "Odette", "Charles"))
-tidy_stringdist(proust, method= "jw")
+tidy_stringdist(proust, method= "osa")
 }
