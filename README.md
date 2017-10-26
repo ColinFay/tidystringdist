@@ -2,13 +2,21 @@
 tidystringdist
 ==============
 
-Compute string distance the tidy way. Built on top of the ['stringdist'](https://github.com/markvanderloo/stringdist) package.
+Compute string distance the tidy way. Built on top of the 'stringdist' package.
 
 Install tidystringdist
 ----------------------
 
+You'll get the dev version on:
+
 ``` r
 devtools::install_github("ColinFay/tidystringdist")
+```
+
+Stable version is available with :
+
+``` r
+install.packages("tidystringdist")
 ```
 
 tidystringdist basic workflow
@@ -64,22 +72,49 @@ library(dplyr)
 #> Warning: package 'dplyr' was built under R version 3.4.2
 data(starwars)
 tidy_comb_sw <- tidy_comb_all(starwars, name)
-tidy_stringdist(tidy_comb_sw, method = "jw")
-#> # A tibble: 3,741 x 3
-#>                V1                 V2        jw
-#>  *         <fctr>             <fctr>     <dbl>
-#>  1 Luke Skywalker              C-3PO 1.0000000
-#>  2 Luke Skywalker              R2-D2 1.0000000
-#>  3 Luke Skywalker        Darth Vader 0.5752165
-#>  4 Luke Skywalker        Leia Organa 0.5335498
-#>  5 Luke Skywalker          Owen Lars 0.4624339
-#>  6 Luke Skywalker Beru Whitesun lars 0.4656085
-#>  7 Luke Skywalker              R5-D4 1.0000000
-#>  8 Luke Skywalker  Biggs Darklighter 0.5728291
-#>  9 Luke Skywalker     Obi-Wan Kenobi 0.6349206
-#> 10 Luke Skywalker   Anakin Skywalker 0.2816558
+tidy_stringdist(tidy_comb_sw)
+#> Warning in do_dist(a = b, b = a, method = method, weight = weight, maxDist
+#> = maxDist, : Non-printable ascii or non-ascii characters in soundex.
+#> Results may be unreliable. See ?printable_ascii.
+#> # A tibble: 3,741 x 12
+#>                V1                 V2   osa    lv    dl hamming   lcs qgram
+#>  *         <fctr>             <fctr> <dbl> <dbl> <dbl>   <dbl> <dbl> <dbl>
+#>  1 Luke Skywalker              C-3PO    14    14    14     Inf    19    19
+#>  2 Luke Skywalker              R2-D2    14    14    14     Inf    19    19
+#>  3 Luke Skywalker        Darth Vader    11    11    11     Inf    17    17
+#>  4 Luke Skywalker        Leia Organa    11    11    11     Inf    17    15
+#>  5 Luke Skywalker          Owen Lars    12    12    12     Inf    15    11
+#>  6 Luke Skywalker Beru Whitesun lars    16    16    16     Inf    22    18
+#>  7 Luke Skywalker              R5-D4    14    14    14     Inf    19    19
+#>  8 Luke Skywalker  Biggs Darklighter    13    13    13     Inf    21    19
+#>  9 Luke Skywalker     Obi-Wan Kenobi    14    14    14      14    24    22
+#> 10 Luke Skywalker   Anakin Skywalker     5     5     5     Inf     8     8
+#> # ... with 3,731 more rows, and 4 more variables: cosine <dbl>,
+#> #   jaccard <dbl>, jw <dbl>, soundex <dbl>
+```
+
+Default call compute all the methods. You can use specific method with the `method` argument:
+
+``` r
+tidy_stringdist(tidy_comb_sw, method = c("osa","jw"))
+#> # A tibble: 3,741 x 4
+#>                V1                 V2   osa        jw
+#>  *         <fctr>             <fctr> <dbl>     <dbl>
+#>  1 Luke Skywalker              C-3PO    14 1.0000000
+#>  2 Luke Skywalker              R2-D2    14 1.0000000
+#>  3 Luke Skywalker        Darth Vader    11 0.5752165
+#>  4 Luke Skywalker        Leia Organa    11 0.5335498
+#>  5 Luke Skywalker          Owen Lars    12 0.4624339
+#>  6 Luke Skywalker Beru Whitesun lars    16 0.4656085
+#>  7 Luke Skywalker              R5-D4    14 1.0000000
+#>  8 Luke Skywalker  Biggs Darklighter    13 0.5728291
+#>  9 Luke Skywalker     Obi-Wan Kenobi    14 0.6349206
+#> 10 Luke Skywalker   Anakin Skywalker     5 0.2816558
 #> # ... with 3,731 more rows
 ```
+
+Tidyverse workflow
+------------------
 
 The goal is to provide a convenient interface to work with other tools from the tidyverse.
 
@@ -108,22 +143,14 @@ starwars %>%
   filter(species == "Droid") %>%
   tidy_comb_all(name) %>%
   tidy_stringdist() %>% 
-  filter(osa > 2) %>%
-  arrange(desc(osa))
-#> # A tibble: 9 x 3
-#>       V1     V2   osa
-#>   <fctr> <fctr> <dbl>
-#> 1  C-3PO  R2-D2     5
-#> 2  C-3PO  R5-D4     5
-#> 3  C-3PO  IG-88     5
-#> 4  C-3PO    BB8     5
-#> 5  R2-D2    BB8     5
-#> 6  R5-D4    BB8     5
-#> 7  R2-D2  IG-88     4
-#> 8  R5-D4  IG-88     4
-#> 9  IG-88    BB8     4
+  summarise_if(is.numeric, mean)
+#> # A tibble: 1 x 10
+#>     osa    lv    dl hamming   lcs qgram    cosine   jaccard        jw
+#>   <dbl> <dbl> <dbl>   <dbl> <dbl> <dbl>     <dbl>     <dbl>     <dbl>
+#> 1   4.4   4.4   4.4     Inf   7.4   7.4 0.8304896 0.8671032 0.6422222
+#> # ... with 1 more variables: soundex <dbl>
 ```
 
 ### Contact
 
-Questions and feedbacks [welcome](mailto:contact@colinfay.me) !
+Questions and feedbacks [welcome](mailto:contact@colinfay.me)!

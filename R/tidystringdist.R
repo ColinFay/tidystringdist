@@ -8,25 +8,25 @@
 #' @importFrom stringdist stringdist
 #' @importFrom rlang quo_name enquo
 #' @importFrom dplyr mutate
+#' @importFrom purrr map_dfc
+#'
+#' @include utils.R
 #'
 #' @return a tibble with string distance
 #' @export
 #'
 #' @examples
 #' proust <- tidy_comb_all(c("Albertine", "Françoise", "Gilberte", "Odette", "Charles"))
-#' tidy_stringdist(proust, method= "osa")
+#' tidy_stringdist(proust)
 
 
 tidy_stringdist <- function(df, v1 = V1, v2 = V2, method = c("osa", "lv", "dl", "hamming", "lcs", "qgram",
-                                             "cosine", "jaccard", "jw", "soundex")) {
-  method <- match.arg(method)
-  col_name <- quo_name(enquo(method))
-  str_dist <- stringdist::stringdist(df[[rlang::quo_name(rlang::enquo(v1))]],
-                                     df[[rlang::quo_name(rlang::enquo(v2))]],
-                                     method)
-  structure(dplyr::mutate(df, !! col_name := str_dist), class = c("tbl_df", "tbl", "data.frame"))
+                                                             "cosine", "jaccard", "jw", "soundex")) {
+  assertthat::assert_that(all(method %in% c("osa", "lv", "dl", "hamming", "lcs", "qgram",
+                                        "cosine", "jaccard", "jw", "soundex")),
+                          msg = "One or more provided method(s) is not a strindist method")
+  structure(cbind(df, map_dfc(method, ~tibble_dist(df, v1 = V1, v2 = V2, method = .x ))),
+            class = c("tbl_df", "tbl", "data.frame"))
 }
-
-
 
 

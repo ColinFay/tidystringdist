@@ -16,13 +16,22 @@ knitr::opts_chunk$set(
 
 # tidystringdist
 
-Compute string distance the tidy way. Built on top of the ['stringdist'](https://github.com/markvanderloo/stringdist) package.
+Compute string distance the tidy way. Built on top of the 'stringdist' package.
 
 ## Install tidystringdist
+
+You'll get the dev version on: 
 
 ```{r eval = FALSE}
 devtools::install_github("ColinFay/tidystringdist")
 ```
+
+Stable version is available with : 
+
+```{r eval = FALSE}
+install.packages("tidystringdist")
+```
+
 
 ## tidystringdist basic workflow
 
@@ -53,13 +62,20 @@ Once you've got this data.frame, you can use `tidy_string_dist` to compute strin
 
 Note that if you've used the `tidy_comb` function to create you data.frame, you won't need to set the column names. 
 
-
 ```{r example, warnings = FALSE, error=FALSE, message=FALSE}
 library(dplyr)
 data(starwars)
 tidy_comb_sw <- tidy_comb_all(starwars, name)
-tidy_stringdist(tidy_comb_sw, method = "jw")
+tidy_stringdist(tidy_comb_sw)
 ```
+
+Default call compute all the methods. You can use specific method with the `method` argument: 
+
+```{r}
+tidy_stringdist(tidy_comb_sw, method = c("osa","jw"))
+```
+
+## Tidyverse workflow
 
 The goal is to provide a convenient interface to work with other tools from the tidyverse. 
 
@@ -74,10 +90,9 @@ starwars %>%
   filter(species == "Droid") %>%
   tidy_comb_all(name) %>%
   tidy_stringdist() %>% 
-  filter(osa > 2) %>%
-  arrange(desc(osa))
+  summarise_if(is.numeric, mean)
 ```
 
 ### Contact
 
-Questions and feedbacks [welcome](mailto:contact@colinfay.me) !
+Questions and feedbacks [welcome](mailto:contact@colinfay.me)!
