@@ -2,7 +2,7 @@
 tidystringdist
 ==============
 
-Compute string distance the tidy way. Built on top of the 'stringdist' package.
+Compute string distance the tidy way. Built on top of the ['stringdist'](https://github.com/markvanderloo/stringdist) package.
 
 Install tidystringdist
 ----------------------
