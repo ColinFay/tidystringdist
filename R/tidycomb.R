@@ -7,6 +7,7 @@
 #' @param ... if data is a data.frame, the col where the words to combine are
 #'
 #' @importFrom utils combn
+#' @importFrom rlang quo_name quo
 #'
 #' @return a tibble with all possible combination of elements from a list
 #' @export
@@ -23,12 +24,12 @@ tidy_comb <- function(data, base, ...){
 #' @export
 
 tidy_comb.data.frame <- function(data, base, ...) {
-  col <- rlang::quo_name(rlang::quo(...))
+  col <- quo_name(quo(...))
   a <- data[[col]]
   if (class(a) == "factor"){
     a <- as.character(a)
   }
-  ret <- data.frame(V1 = base, V2 = unique(a))
+  ret <- data.frame(V1 = base, V2 = unique(a), stringsAsFactors = FALSE)
   structure(ret, class = c("tbl_df", "tbl", "data.frame"))
 }
 
@@ -37,7 +38,7 @@ tidy_comb.data.frame <- function(data, base, ...) {
 
 
 tidy_comb.default <- function(data, base,...) {
-  ret <- data.frame(V1 = base, V2 = data)
+  ret <- data.frame(V1 = base, V2 = data, stringsAsFactors = FALSE)
   structure(ret, class = c("tbl_df", "tbl", "data.frame"))
 }
 
@@ -65,12 +66,12 @@ tidy_comb_all <- function(data,...){
 #' @export
 
 tidy_comb_all.data.frame <- function(data, ...) {
-  col <- rlang::quo_name(rlang::quo(...))
+  col <- quo_name(quo(...))
   a <- data[[col]]
   if (class(a) == "factor"){
     a <- as.character(a)
   }
-  a <- as.data.frame(t(combn(unique(a), 2)))
+  a <- as.data.frame(t(combn(unique(a), 2)), stringsAsFactors = FALSE)
   structure(a, class = c("tbl_df", "tbl", "data.frame"))
 }
 
@@ -78,7 +79,7 @@ tidy_comb_all.data.frame <- function(data, ...) {
 #' @export
 
 tidy_comb_all.default <- function(data, ...) {
-  a <- as.data.frame(t(combn(data, 2)))
+  a <- as.data.frame(t(combn(data, 2)), stringsAsFactors = FALSE)
   structure(a, class = c("tbl_df", "tbl", "data.frame"))
 }
 

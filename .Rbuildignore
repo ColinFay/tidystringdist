@@ -5,3 +5,4 @@
 CONDUCT.md
 README.Rmd
 data-raw
+^codecov\.yml$

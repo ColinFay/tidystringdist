@@ -9,6 +9,7 @@
 #' @importFrom rlang quo_name enquo
 #' @importFrom dplyr mutate
 #' @importFrom purrr map_dfc
+#' @importFrom attempt stop_if_not
 #'
 #' @include utils.R
 #'
@@ -22,9 +23,9 @@
 
 tidy_stringdist <- function(df, v1 = V1, v2 = V2, method = c("osa", "lv", "dl", "hamming", "lcs", "qgram",
                                                              "cosine", "jaccard", "jw", "soundex")) {
-  assertthat::assert_that(all(method %in% c("osa", "lv", "dl", "hamming", "lcs", "qgram",
-                                        "cosine", "jaccard", "jw", "soundex")),
-                          msg = "One or more provided method(s) is not a strindist method")
+  a <- all(method %in% c("osa", "lv", "dl", "hamming", "lcs", "qgram",
+                    "cosine", "jaccard", "jw", "soundex"))
+  stop_if_not(a, msg = "One or more provided method(s) is not a stringdist method")
   structure(cbind(df, map_dfc(method, ~tibble_dist(df, v1 = V1, v2 = V2, method = .x ))),
             class = c("tbl_df", "tbl", "data.frame"))
 }

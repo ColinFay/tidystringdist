@@ -1,7 +1,3 @@
-#' @importFrom magrittr %>%
-#' @export
-magrittr::`%>%`
-
 #' @importFrom stringdist stringdist
 #' @importFrom rlang quo_name enquo
 #' @importFrom dplyr tibble

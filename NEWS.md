@@ -1,5 +1,8 @@
-# tidystringdist 0.0.0.9000
+# tidystringdist 0.1.0
 
+2018-01
+
+stringsasfactors removed
 
 2017-10-26
 

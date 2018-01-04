@@ -9,6 +9,7 @@ use_news_md()
 use_readme_rmd()
 use_testthat()
 use_travis()
+use_coverage()
 
 #init tests
 devtools::use_testthat()
@@ -22,8 +23,7 @@ devtools::use_package("stringdist")
 devtools::use_package("rlang")
 devtools::use_package("tidyr")
 devtools::use_package("magrittr")
-devtools::use_package("purrr")
-devtools::use_package("assertthat")
+devtools::use_package("attempt")
 
 # Vignette
 
