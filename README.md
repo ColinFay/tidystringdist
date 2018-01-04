@@ -1,13 +1,20 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+[![Coverage
+Status](https://img.shields.io/codecov/c/github/ColinFay/tidystringdist/master.svg)](https://codecov.io/github/ColinFay/tidystringdist?branch=master)
+
+[![Travis-CI Build
+Status](https://travis-ci.org/ColinFay/tidystringdist.svg?branch=master)](https://travis-ci.org/ColinFay/tidystringdist)
+
 tidystringdist
 ==============
 
-Compute string distance the tidy way. Built on top of the 'stringdist' package.
+Compute string distance the tidy way. Built on top of the ‘stringdist’
+package.
 
 Install tidystringdist
 ----------------------
 
-You'll get the dev version on:
+You’ll get the dev version on:
 
 ``` r
 devtools::install_github("ColinFay/tidystringdist")
@@ -25,27 +32,32 @@ tidystringdist basic workflow
 tidycomb
 --------
 
-First, you need to create a tibble with the combinations of words you want to compare. You can do this with the `tidy_comb` and `tidy_comb_all` functions. The first takes a base word and combines it with each elements of a list or a column of a data.frame, the 2nd combines all the possible couples from a list or a column.
+First, you need to create a tibble with the combinations of words you
+want to compare. You can do this with the `tidy_comb` and
+`tidy_comb_all` functions. The first takes a base word and combines it
+with each elements of a list or a column of a data.frame, the 2nd
+combines all the possible couples from a list or a column.
 
-If you already have a data.frame with two columns containing the strings to compare, you can skip this part.
+If you already have a data.frame with two columns containing the strings
+to compare, you can skip this part.
 
 ``` r
 library(tidystringdist)
 
 tidy_comb_all(LETTERS[1:3])
 #> # A tibble: 3 x 2
-#>       V1     V2
-#> * <fctr> <fctr>
-#> 1      A      B
-#> 2      A      C
-#> 3      B      C
+#>      V1    V2
+#> * <chr> <chr>
+#> 1     A     B
+#> 2     A     C
+#> 3     B     C
 ```
 
 ``` r
 tidy_comb_all(iris, Species)
 #> # A tibble: 3 x 2
 #>           V1         V2
-#> *     <fctr>     <fctr>
+#> *      <chr>      <chr>
 #> 1     setosa versicolor
 #> 2     setosa  virginica
 #> 3 versicolor  virginica
@@ -54,22 +66,24 @@ tidy_comb_all(iris, Species)
 ``` r
 tidy_comb("Paris", state.name[1:3])
 #> # A tibble: 3 x 2
-#>        V1     V2
-#> *  <fctr> <fctr>
-#> 1 Alabama  Paris
-#> 2  Alaska  Paris
-#> 3 Arizona  Paris
+#>        V1    V2
+#> *   <chr> <chr>
+#> 1 Alabama Paris
+#> 2  Alaska Paris
+#> 3 Arizona Paris
 ```
 
 ### tidy\_string\_dist
 
-Once you've got this data.frame, you can use `tidy_string_dist` to compute string distance. This function takes a data.frame, the two columns containing the strings, and a stringdist method.
+Once you’ve got this data.frame, you can use `tidy_string_dist` to
+compute string distance. This function takes a data.frame, the two
+columns containing the strings, and a stringdist method.
 
-Note that if you've used the `tidy_comb` function to create you data.frame, you won't need to set the column names.
+Note that if you’ve used the `tidy_comb` function to create you
+data.frame, you won’t need to set the column names.
 
 ``` r
 library(dplyr)
-#> Warning: package 'dplyr' was built under R version 3.4.2
 data(starwars)
 tidy_comb_sw <- tidy_comb_all(starwars, name)
 tidy_stringdist(tidy_comb_sw)
@@ -78,7 +92,7 @@ tidy_stringdist(tidy_comb_sw)
 #> Results may be unreliable. See ?printable_ascii.
 #> # A tibble: 3,741 x 12
 #>                V1                 V2   osa    lv    dl hamming   lcs qgram
-#>  *         <fctr>             <fctr> <dbl> <dbl> <dbl>   <dbl> <dbl> <dbl>
+#>  *          <chr>              <chr> <dbl> <dbl> <dbl>   <dbl> <dbl> <dbl>
 #>  1 Luke Skywalker              C-3PO    14    14    14     Inf    19    19
 #>  2 Luke Skywalker              R2-D2    14    14    14     Inf    19    19
 #>  3 Luke Skywalker        Darth Vader    11    11    11     Inf    17    17
@@ -93,13 +107,14 @@ tidy_stringdist(tidy_comb_sw)
 #> #   jaccard <dbl>, jw <dbl>, soundex <dbl>
 ```
 
-Default call compute all the methods. You can use specific method with the `method` argument:
+Default call compute all the methods. You can use specific method with
+the `method` argument:
 
 ``` r
 tidy_stringdist(tidy_comb_sw, method = c("osa","jw"))
 #> # A tibble: 3,741 x 4
 #>                V1                 V2   osa        jw
-#>  *         <fctr>             <fctr> <dbl>     <dbl>
+#>  *          <chr>              <chr> <dbl>     <dbl>
 #>  1 Luke Skywalker              C-3PO    14 1.0000000
 #>  2 Luke Skywalker              R2-D2    14 1.0000000
 #>  3 Luke Skywalker        Darth Vader    11 0.5752165
@@ -116,7 +131,8 @@ tidy_stringdist(tidy_comb_sw, method = c("osa","jw"))
 Tidyverse workflow
 ------------------
 
-The goal is to provide a convenient interface to work with other tools from the tidyverse.
+The goal is to provide a convenient interface to work with other tools
+from the tidyverse.
 
 ``` r
 tidy_stringdist(tidy_comb_sw, method= "osa") %>%
@@ -124,7 +140,7 @@ tidy_stringdist(tidy_comb_sw, method= "osa") %>%
   arrange(desc(osa))
 #> # A tibble: 11 x 3
 #>                       V1                    V2   osa
-#>                   <fctr>                <fctr> <dbl>
+#>                    <chr>                 <chr> <dbl>
 #>  1                 C-3PO Jabba Desilijic Tiure    21
 #>  2                 C-3PO Wicket Systri Warrick    21
 #>  3                 R2-D2 Wicket Systri Warrick    21
