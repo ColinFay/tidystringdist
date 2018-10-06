@@ -4,9 +4,10 @@
 #' @param v1 the name of the first columns
 #' @param v2 the name of the second columns
 #' @param method one of the methods implemented in the stringdist package — "osa", "lv", "dl", "hamming", "lcs", "qgram", "cosine", "jaccard", "jw", "soundex". See \code{\link[stringdist]{stringdist-metrics}}
+#' @param ... other parameters passed to \code{\link[stringdist]{stringdist}}
 #'
 #' @importFrom stringdist stringdist
-#' @importFrom rlang quo_name enquo
+#' @importFrom rlang quo_name enquo enquos
 #' @importFrom dplyr mutate
 #' @importFrom purrr map_dfc
 #' @importFrom attempt stop_if_not
@@ -22,11 +23,14 @@
 
 
 tidy_stringdist <- function(df, v1 = V1, v2 = V2, method = c("osa", "lv", "dl", "hamming", "lcs", "qgram",
-                                                             "cosine", "jaccard", "jw", "soundex")) {
+                                                             "cosine", "jaccard", "jw", "soundex"),...) {
+  v1 <- enquo(v1)
+  v2 <- enquo(v2)
   a <- all(method %in% c("osa", "lv", "dl", "hamming", "lcs", "qgram",
                     "cosine", "jaccard", "jw", "soundex"))
   stop_if_not(a, msg = "One or more provided method(s) is not a stringdist method")
-  structure(cbind(df, map_dfc(method, ~tibble_dist(df, v1 = V1, v2 = V2, method = .x ))),
+  tmp_df <-map_dfc(method, function(.x, ...) tibble_dist(df, v1 = !!v1, v2 = !!v2, method = .x, ...),...)
+  structure(cbind(df, tmp_df),
             class = c("tbl_df", "tbl", "data.frame"))
 }
 

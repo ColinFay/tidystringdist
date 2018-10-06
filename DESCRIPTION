@@ -1,13 +1,13 @@
 Package: tidystringdist
 Title: String Distance Calculation with Tidy Data Principles
-Version: 0.1.2
+Version: 0.1.3
 Authors@R: person("Colin", "Fay", email = "contact@colinfay.me", role = c("aut", "cre"))
 Description: Calculation of string distance following the tidy data principles. Built on top 
   of the 'stringdist' package.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.0.9000
 Imports:
     stringdist,
     rlang,
@@ -16,6 +16,7 @@ Imports:
     purrr,
     attempt
 Suggests: testthat,
+    roxygen,
     knitr,
     rmarkdown,
     covr

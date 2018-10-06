@@ -5,7 +5,7 @@
 \title{Tidy stringdist calculation}
 \usage{
 tidy_stringdist(df, v1 = V1, v2 = V2, method = c("osa", "lv", "dl",
-  "hamming", "lcs", "qgram", "cosine", "jaccard", "jw", "soundex"))
+  "hamming", "lcs", "qgram", "cosine", "jaccard", "jw", "soundex"), ...)
 }
 \arguments{
 \item{df}{a dataframe containing the strings to compare}
@@ -15,6 +15,8 @@ tidy_stringdist(df, v1 = V1, v2 = V2, method = c("osa", "lv", "dl",
 \item{v2}{the name of the second columns}
 
 \item{method}{one of the methods implemented in the stringdist package — "osa", "lv", "dl", "hamming", "lcs", "qgram", "cosine", "jaccard", "jw", "soundex". See \code{\link[stringdist]{stringdist-metrics}}}
+
+\item{...}{other parameters passed to \code{\link[stringdist]{stringdist}}}
 }
 \value{
 a tibble with string distance
