@@ -16,7 +16,6 @@ Imports:
     purrr,
     attempt
 Suggests: testthat,
-    roxygen,
     knitr,
     rmarkdown,
     covr
