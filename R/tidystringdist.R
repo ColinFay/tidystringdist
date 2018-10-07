@@ -24,6 +24,7 @@
 
 tidy_stringdist <- function(df, v1 = V1, v2 = V2, method = c("osa", "lv", "dl", "hamming", "lcs", "qgram",
                                                              "cosine", "jaccard", "jw", "soundex"),...) {
+
   v1 <- enquo(v1)
   v2 <- enquo(v2)
   a <- all(method %in% c("osa", "lv", "dl", "hamming", "lcs", "qgram",
