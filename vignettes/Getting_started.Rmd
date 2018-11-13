@@ -34,7 +34,7 @@ install.packages("tidystringdist")
 
 Or the dev version from GitHub: 
 
-```{r}
+```{r eval = FALSE}
 # install.packages(remotes)
 remotes::install_github("ColinFay/tidystringdist")
 ```
