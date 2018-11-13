@@ -8,8 +8,6 @@
 #'
 #' @importFrom stringdist stringdist
 #' @importFrom rlang quo_name enquo enquos
-#' @importFrom dplyr mutate
-#' @importFrom purrr map_dfc
 #' @importFrom attempt stop_if_not
 #'
 #' @include utils.R
@@ -30,7 +28,9 @@ tidy_stringdist <- function(df, v1 = V1, v2 = V2, method = c("osa", "lv", "dl", 
   a <- all(method %in% c("osa", "lv", "dl", "hamming", "lcs", "qgram",
                     "cosine", "jaccard", "jw", "soundex"))
   stop_if_not(a, msg = "One or more provided method(s) is not a stringdist method")
-  tmp_df <-map_dfc(method, function(.x, ...) tibble_dist(df, v1 = !!v1, v2 = !!v2, method = .x, ...),...)
+
+  tmp_df <- lapply(method, function(.x, ...) tibble_dist(df, v1 = !!v1, v2 = !!v2, method = .x, ...),...)
+  tmp_df <- do.call(cbind, tmp_df)
   structure(cbind(df, tmp_df),
             class = c("tbl_df", "tbl", "data.frame"))
 }

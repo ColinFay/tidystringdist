@@ -14,9 +14,7 @@ RoxygenNote: 6.1.0.9000
 Imports:
     stringdist,
     rlang,
-    magrittr, 
-    dplyr,
-    purrr,
+    tibble,
     attempt
 Suggests: testthat,
     knitr,

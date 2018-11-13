@@ -64,6 +64,8 @@ tidy_comb_all <- function(data,...){
 
 #' @rdname tidy_comb_all
 #' @export
+#' @importFrom utils combn
+#' @importFrom rlang quo_name
 
 tidy_comb_all.data.frame <- function(data, ...) {
   col <- quo_name(quo(...))
@@ -77,6 +79,8 @@ tidy_comb_all.data.frame <- function(data, ...) {
 
 #' @rdname tidy_comb_all
 #' @export
+#' @importFrom utils combn
+#' @importFrom rlang quo_name
 
 tidy_comb_all.default <- function(data, ...) {
   a <- as.data.frame(t(combn(data, 2)), stringsAsFactors = FALSE)
