@@ -63,7 +63,7 @@ tidy_comb("Paris", state.name[1:3])
 
 ### tidy_string_dist
 
-Once you've got this data.frame, you can use `tidy_string_dist` to compute string distance. This function takes a data.frame, the two columns containing the strings, and a stringdist method. 
+Once you've got this data.frame, you can use `tidy_string_dist()` to compute string distance. This function takes a data.frame, the two columns containing the strings, and one or more stringdist methods. 
 
 Note that if you've used the `tidy_comb` function to create your data.frame, you won't need to set the column names. 
 
