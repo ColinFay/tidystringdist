@@ -63,15 +63,15 @@ tidy_comb("Paris", state.name)
 Once you've got this data.frame, you can use `tidy_string_dist()` to compute string distance. This function takes a data.frame, the two columns containing the strings, and one or more stringdist methods. 
 
 ```{r example, warnings = FALSE, error=FALSE, message=FALSE}
-tidy_comb_all(state.name) %>%
-  tidy_stringdist()
+comb <- tidy_comb_all(state.name) 
+tidy_stringdist(comb)
 ```
 
 Default call compute all the methods. You can use specific method with the `method` argument: 
 
 ```{r}
-tidy_comb_all(state.name) %>%
-  tidy_stringdist(method = c("osa","jw"))
+comb <- tidy_comb_all(state.name)
+tidy_stringdist(comb, method = c("osa","jw"))
 ```
 
 

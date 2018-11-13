@@ -1,0 +1,83 @@
+---
+title: "Tests and Coverage"
+date: "`r format(Sys.time(), '%d %B, %Y %H:%M:%S')`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{covrpage: Tests and Coverage}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+  
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  eval = FALSE
+)
+```
+
+<!--- Placeholder for tests/README.md Do Not Edit--->
+This output is created by
+[covrpage](https://github.com/yonicd/covrpage).
+
+## Coverage
+
+Coverage summary is created using the
+[covr](https://github.com/r-lib/covr) package.
+
+| Object                                      | Coverage (%) |
+| :------------------------------------------ | :----------: |
+| tidystringdist                              |     100      |
+| [R/tidycomb.R](https://github.com/ColinFay/tidystringdist/tree/master/R/tidycomb.R)             |     100      |
+| [R/tidystringdist.R](https://github.com/ColinFay/tidystringdist/tree/master/R/tidystringdist.R) |     100      |
+| [R/utils.R](https://github.com/ColinFay/tidystringdist/tree/master/R/utils.R)                   |     100      |
+
+<br>
+
+## Unit Tests
+
+Unit Test summary is created using the
+[testthat](https://github.com/r-lib/testthat)
+package.
+
+| file                                                          |  n |  time | error | failed | skipped | warning |
+| :------------------------------------------------------------ | -: | ----: | ----: | -----: | ------: | ------: |
+| [test-tidy\_comb.R](https://github.com/ColinFay/tidystringdist/tree/master/tests/testthat/test-tidy_comb.R)                | 20 | 0.032 |     0 |      0 |       0 |       0 |
+| [test-tidy\_string\_dist.R](https://github.com/ColinFay/tidystringdist/tree/master/tests/testthat/test-tidy_string_dist.R) | 12 | 0.043 |     0 |      0 |       0 |       0 |
+
+<details closed>
+
+<summary> Show Detailed Test Results
+</summary>
+
+| file                                                             | context            | test                                     | status |  n |  time |
+| :--------------------------------------------------------------- | :----------------- | :--------------------------------------- | :----- | -: | ----: |
+| [test-tidy\_comb.R](https://github.com/ColinFay/tidystringdist/tree/master/tests/testthat/test-tidy_comb.R#L5)                | tidy\_comb         | tidy combination all works on list       | PASS   |  5 | 0.014 |
+| [test-tidy\_comb.R](https://github.com/ColinFay/tidystringdist/tree/master/tests/testthat/test-tidy_comb.R#L14)               | tidy\_comb         | tidy combination works on list           | PASS   |  5 | 0.004 |
+| [test-tidy\_comb.R](https://github.com/ColinFay/tidystringdist/tree/master/tests/testthat/test-tidy_comb.R#L23)               | tidy\_comb         | tidy combination all works on data.frame | PASS   |  5 | 0.010 |
+| [test-tidy\_comb.R](https://github.com/ColinFay/tidystringdist/tree/master/tests/testthat/test-tidy_comb.R#L32)               | tidy\_comb         | tidy combination works on data.frame     | PASS   |  5 | 0.004 |
+| [test-tidy\_string\_dist.R](https://github.com/ColinFay/tidystringdist/tree/master/tests/testthat/test-tidy_string_dist.R#L9) | tidy\_string\_dist | tidy stringdist works                    | PASS   | 12 | 0.043 |
+
+</details>
+
+<details>
+
+<summary> Session Info </summary>
+
+| Field    | Value                               |
+| :------- | :---------------------------------- |
+| Version  | R version 3.4.4 (2018-03-15)        |
+| Platform | x86\_64-apple-darwin15.6.0 (64-bit) |
+| Running  | macOS 10.14                         |
+| Language | en\_US                              |
+| Timezone | Europe/Paris                        |
+
+| Package  | Version    |
+| :------- | :--------- |
+| testthat | 2.0.0.9000 |
+| covr     | 3.2.0      |
+| covrpage | 0.0.65     |
+
+</details>
+
+<!--- Final Status : pass --->

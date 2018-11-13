@@ -1,0 +1,7 @@
+pandoc: 2.2.2.1
+pkgdown: 1.1.0
+pkgdown_sha: ~
+articles:
+  Getting_started: Getting_started.html
+  tests_and_coverage: tests_and_coverage.html
+

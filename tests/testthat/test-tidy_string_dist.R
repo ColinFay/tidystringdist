@@ -12,7 +12,7 @@ test_that("tidy stringdist works", {
   expect_true(inherits(df, "tbl"))
   expect_true(inherits(df, "data.frame"))
   expect_false(any(df$jw > 1))
-  df <- tidy_stringdist(tidy_comb_sw)
+  df <- suppressWarnings(tidy_stringdist(tidy_comb_sw))
   expect_equal(nrow(tidy_comb_sw), nrow(df))
   expect_equal(ncol(df), 12)
   expect_true(inherits(df, "tbl_df"))
