@@ -11,3 +11,4 @@ README.Rmd
 data-raw
 ^codecov\.yml$
 ^CRAN-SUBMISSION$
+^\.claude$
