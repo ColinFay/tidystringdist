@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pandoc --version)",
+      "Read(//Applications/RStudio.app/Contents/Resources/app/quarto/bin/**)",
+      "Read(//Applications/Positron.app/Contents/Resources/app/quarto/bin/**)",
+      "Read(//Users/colinfay/**)",
+      "Bash(R -e 'devtools::check\\(document = FALSE\\)')",
+      "Bash(R -e 'devtools::build_vignettes\\(\\)')"
+    ],
+    "additionalDirectories": [
+      "/Users/colinfay"
+    ]
+  }
+}

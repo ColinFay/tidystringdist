@@ -4,8 +4,14 @@
 \alias{tidy_stringdist}
 \title{Tidy stringdist calculation}
 \usage{
-tidy_stringdist(df, v1 = V1, v2 = V2, method = c("osa", "lv", "dl",
-  "hamming", "lcs", "qgram", "cosine", "jaccard", "jw", "soundex"), ...)
+tidy_stringdist(
+  df,
+  v1 = V1,
+  v2 = V2,
+  method = c("osa", "lv", "dl", "hamming", "lcs", "qgram", "cosine", "jaccard", "jw",
+    "soundex"),
+  ...
+)
 }
 \arguments{
 \item{df}{a dataframe containing the strings to compare}

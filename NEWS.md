@@ -1,3 +1,7 @@
+# tidystringdist 0.1.6
+
+- chore: fix moved URLs (codecov, travis, GitHub source links) flagged by CRAN incoming checks
+
 # tidystringdist 0.1.5
 
 - chore: update author field

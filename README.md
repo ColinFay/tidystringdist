@@ -1,10 +1,4 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-[![Coverage
-Status](https://img.shields.io/codecov/c/github/ColinFay/tidystringdist/master.svg)](https://codecov.io/github/ColinFay/tidystringdist?branch=master)
-
-[![Travis-CI Build
-Status](https://travis-ci.org/ColinFay/tidystringdist.svg?branch=master)](https://travis-ci.org/ColinFay/tidystringdist)
-
 tidystringdist
 ==============
 
