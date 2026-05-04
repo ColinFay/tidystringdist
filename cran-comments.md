@@ -1,19 +1,9 @@
-## Test environments
-* local OS X install, R 3.4.4
-* ubuntu 14.04 (on travis-ci), R 3.4.4
-* win-builder (devel and release)
+## Resubmission
 
-## R CMD check results
+Following the CRAN team's request, the ORCID entries in the `Authors@R`
+field of the DESCRIPTION file have been changed from
+`comment = structure("....", .Names = "ORCID")` to the recommended
+`comment = c(ORCID = "....")` form.
 
-0 errors | 0 warnings | 1 note
-
-* This is a new release.
-
--> Package was archived on CRAN
-   
-CRAN repository db overrides:
-X-CRAN-Comment: Archived on 2019-02-24 as issues were not corrected despite reminders.
-
-Has LICENSE with invalid COPYRIGHT HOLDER.
- 
- => Has change the COPYRIGHT HOLDER to a valid field.
+The `if (class(a) == "factor")` checks in `R/tidycomb.R` have also been
+replaced with `inherits(a, "factor")` to address the related NOTE.

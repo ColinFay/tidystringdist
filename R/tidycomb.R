@@ -26,7 +26,7 @@ tidy_comb <- function(data, base, ...){
 tidy_comb.data.frame <- function(data, base, ...) {
   col <- quo_name(quo(...))
   a <- data[[col]]
-  if (class(a) == "factor"){
+  if (inherits(a, "factor")){
     a <- as.character(a)
   }
   ret <- data.frame(V1 = base, V2 = unique(a), stringsAsFactors = FALSE)
@@ -70,7 +70,7 @@ tidy_comb_all <- function(data,...){
 tidy_comb_all.data.frame <- function(data, ...) {
   col <- quo_name(quo(...))
   a <- data[[col]]
-  if (class(a) == "factor"){
+  if (inherits(a, "factor")){
     a <- as.character(a)
   }
   a <- as.data.frame(t(combn(unique(a), 2)), stringsAsFactors = FALSE)

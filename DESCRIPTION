@@ -1,17 +1,17 @@
 Package: tidystringdist
 Title: String Distance Calculation with Tidy Data Principles
-Version: 0.1.4
-Authors@R: 
+Version: 0.1.5
+Authors@R:
     c(person(given = "Colin",
              family = "Fay",
              role = c("aut", "cre"),
              email = "contact@colinfay.me",
-             comment = structure("0000-0001-7343-1846", .Names = "ORCID")),
+             comment = c(ORCID = "0000-0001-7343-1846")),
       person(given = "Dmytro",
              family = "Perepolkin",
              role = "ctb",
              email = "dperepolkin@gmail.com",
-             comment = structure("0000-0001-8558-6183", .Names = "ORCID")))
+             comment = c(ORCID = "0000-0001-8558-6183")))
 Description: Calculation of string distance following the tidy
     data principles. Built on top of the 'stringdist' package.
 License: MIT + file LICENSE
@@ -20,13 +20,13 @@ Imports:
     rlang,
     stringdist,
     tibble
-Suggests: 
+Suggests:
     dplyr,
     knitr,
     magrittr,
     rmarkdown,
     testthat
-VignetteBuilder: 
+VignetteBuilder:
     knitr
 Encoding: UTF-8
 LazyData: true
